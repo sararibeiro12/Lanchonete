@@ -1,0 +1,596 @@
+:root {
+    --primary-yellow: #FFD700;
+    --dark-yellow: #FFC700;
+    --black: #000000;
+    --dark-gray: #1A1A1A;
+    --light-gray: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--dark-gray);
+    color: white;
+}
+
+.hero {
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-yellow);
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.logo-container {
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem;
+    border-radius: 15px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid var(--primary-yellow);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.sobre {
+    background: var(--black);
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.sobre p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0 1rem;
+}
+
+.sobre h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.sobre .horario {
+    color: var(--primary-yellow);
+    font-weight: bold;
+    margin-top: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.cardapio {
+    padding: 4rem 0;
+    background-color: var(--dark-gray);
+}
+
+.cardapio h2 {
+    color: var(--primary-yellow);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.categorias button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background: var(--black);
+    color: var(--primary-yellow);
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.categorias button:hover {
+    background: var(--primary-yellow);
+    color: var(--black);
+}
+
+.categorias button.ativo {
+    background: var(--primary-yellow);
+    color: var(--black);
+}
+
+.pizzas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.pizza-card {
+    border: 2px solid var(--primary-yellow);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    background: var(--black);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.pizza-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.pizza-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: 2px solid var(--primary-yellow);
+}
+
+.pizza-card h3 {
+    color: var(--primary-yellow);
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.pizza-card p {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.pizza-card .preco {
+    font-size: 1.3rem;
+    color: var(--primary-yellow);
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.pizza-card button {
+    background: var(--primary-yellow);
+    color: var(--black);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+}
+
+.pizza-card button:hover {
+    background: var(--dark-yellow);
+    transform: scale(1.05);
+}
+
+.carrinho {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    background: var(--black);
+    padding: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255,215,0,0.3);
+    max-width: 250px;
+    border: 2px solid var(--primary-yellow);
+    color: white;
+}
+
+.carrinho h3 {
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--primary-yellow);
+}
+
+.item-carrinho button {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--primary-yellow);
+    text-align: center;
+    color: var(--primary-yellow);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.carrinho button {
+    background: var(--primary-yellow);
+    color: var(--black);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.carrinho button:hover {
+    background: var(--dark-yellow);
+}
+
+.tamanhos-container {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.tamanho-toggle {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--primary-yellow);
+    border: none;
+    border-radius: 4px;
+    color: var(--black);
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tamanhos-opcoes {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    border: 2px solid var(--primary-yellow);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.tamanhos-opcoes.mostrar {
+    display: block;
+}
+
+.tamanhos-opcoes button {
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.tamanhos-opcoes button:hover {
+    background: var(--primary-yellow);
+    color: var(--black);
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tamanho-info {
+    font-size: 0.8rem;
+    color: var(--primary-yellow);
+}
+
+.tamanho-opcao button {
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tamanho-opcao button.selecionado {
+    background: var(--primary-yellow);
+    color: var(--black);
+    font-weight: bold;
+}
+
+.btn-adicionar {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--primary-yellow);
+    border: none;
+    border-radius: 4px;
+    color: var(--black);
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-adicionar:hover {
+    background: var(--dark-yellow);
+    transform: scale(1.02);
+}
+
+.sobre-container {
+    padding: 2rem;
+    background: var(--dark-gray);
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sobre-card {
+    background: var(--black);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid var(--primary-yellow);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.sobre-card h2 {
+    color: var(--primary-yellow);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.selos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.selo i {
+    font-size: 2.5rem;
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.avaliacoes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.avaliacao {
+    background: rgba(0,0,0,0.2);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.estrelas {
+    color: var(--primary-yellow);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.comentario {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.cliente {
+    color: var(--primary-yellow);
+    font-weight: bold;
+}
+
+.comentar form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--primary-yellow);
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: var(--primary-yellow);
+}
+
+.comentar textarea,
+.comentar input[type="text"] {
+    padding: 0.8rem;
+    border-radius: 4px;
+    border: 1px solid var(--primary-yellow);
+    background: rgba(0,0,0,0.2);
+    color: white;
+    resize: vertical;
+}
+
+.comentar textarea {
+    min-height: 100px;
+}
+
+.comentar button {
+    background: var(--primary-yellow);
+    color: var(--black);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.comentar button:hover {
+    background: var(--dark-yellow);
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .sobre-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--dark-gray);
+    margin: 5% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    border: 2px solid var(--primary-yellow);
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    color: var(--primary-yellow);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+}
+
+.form-section h3 {
+    color: var(--primary-yellow);
+    margin-bottom: 1rem;
+}
+
+.form-section input,
+.form-section select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--primary-yellow);
+    border-radius: 4px;
+    color: white;
+}
+
+.card-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+#form-pedido button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-yellow);
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#form-pedido button:hover {
+    background: var(--dark-yellow);
+    transform: scale(1.02);
+}

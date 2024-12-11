@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Bella Napoli</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Pizzaria Bella Napoli</h1>
+            <p>A autêntica pizza italiana em sua mesa</p>
+            <div class="logo-container">
+                <img src="imagens/Logo.png" alt="Logo Bella Napoli" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <section class="cardapio" id="cardapio">
+        <div class="container">
+            <h2>Cardápio</h2>
+            <div class="categorias">
+                <button class="ativo" onclick="filtrarCategoria('salgadas')">Pizzas Salgadas</button>
+                <button onclick="filtrarCategoria('doces')">Pizzas Doces</button>
+                <button onclick="filtrarCategoria('bebidas')">Bebidas</button>
+                <button onclick="filtrarCategoria('sobre')">Sobre Nós</button>
+            </div>
+            <div class="pizzas-grid" id="pizzas-container">
+                <!-- Pizzas serão inseridas via JavaScript -->
+            </div>
+            <div class="sobre-container" id="sobre-container" style="display: none;">
+                <div class="sobre-grid">
+                    <div class="sobre-card historia">
+                        <h2>Nossa História</h2>
+                        <p>Desde 1990, a Pizzaria Bella Napoli traz para você o verdadeiro sabor da pizza italiana. 
+                           Com ingredientes selecionados e massa preparada artesanalmente, nossas pizzas são assadas 
+                           em forno a lenha, garantindo aquele sabor único e irresistível.</p>
+                        <p class="horario"><i class="far fa-clock"></i> Terça a Domingo, das 17:00 às 24:00</p>
+                    </div>
+
+                    <div class="sobre-card qualidade">
+                        <h2>Selos de Qualidade</h2>
+                        <div class="selos">
+                            <div class="selo">
+                                <i class="fas fa-award"></i>
+                                <p>Excelência em Atendimento</p>
+                            </div>
+                            <div class="selo">
+                                <i class="fas fa-certificate"></i>
+                                <p>Qualidade Garantida</p>
+                            </div>
+                            <div class="selo">
+                                <i class="fas fa-medal"></i>
+                                <p>Melhor Pizza da Região</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sobre-card avaliacoes">
+                        <h2>Avaliações dos Clientes</h2>
+                        <div class="avaliacoes-container">
+                            <div class="avaliacao">
+                                <div class="estrelas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="comentario">"Melhor pizza que já comi! Massa perfeita e ingredientes frescos."</p>
+                                <p class="cliente">- Maria Silva</p>
+                            </div>
+                            <div class="avaliacao">
+                                <div class="estrelas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="comentario">"Atendimento excelente e sabor incomparável!"</p>
+                                <p class="cliente">- João Santos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sobre-card comentar">
+                        <h2>Deixe sua Avaliação</h2>
+                        <form id="form-avaliacao" onsubmit="adicionarAvaliacao(event)">
+                            <div class="rating">
+                                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                            </div>
+                            <textarea placeholder="Conte-nos sua experiência..." required></textarea>
+                            <input type="text" placeholder="Seu nome" required>
+                            <button type="submit">Enviar Avaliação</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="carrinho" id="carrinho">
+        <h3><i class="fas fa-shopping-cart"></i> Carrinho</h3>
+        <div id="itens-carrinho"></div>
+        <div class="total">
+            <p>Total: R$ <span id="total-valor">0.00</span></p>
+        </div>
+        <button onclick="mostrarFormularioPedido()">Finalizar Pedido</button>
+    </div>
+
+    <!-- Modal de Finalização de Pedido -->
+    <div id="modal-pedido" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Finalizar Pedido</h2>
+            <form id="form-pedido" onsubmit="finalizarPedido(event)">
+                <div class="form-section">
+                    <h3>Dados Pessoais</h3>
+                    <input type="text" name="nome" placeholder="Nome completo" required>
+                    <input type="email" name="email" placeholder="E-mail" required>
+                    <input type="tel" name="celular" placeholder="Celular" required>
+                    <input type="text" name="cpf" placeholder="CPF" required>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Forma de Pagamento</h3>
+                    <select name="formaPagamento" onchange="toggleCartaoFields()" required>
+                        <option value="">Selecione a forma de pagamento</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="pix">PIX</option>
+                        <option value="dinheiro">Dinheiro</option>
+                    </select>
+                    
+                    <div id="campos-cartao" style="display: none;">
+                        <input type="text" name="numeroCartao" placeholder="Número do Cartão">
+                        <div class="card-info">
+                            <input type="text" name="validade" placeholder="MM/AA">
+                            <input type="text" name="cvv" placeholder="CVV">
+                        </div>
+                        <input type="text" name="titular" placeholder="Nome do Titular">
+                    </div>
+                    
+                    <div id="campo-troco" style="display: none;">
+                        <input type="number" name="troco" placeholder="Troco para quanto?">
+                    </div>
+                </div>
+                
+                <button type="submit">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
